@@ -1,0 +1,16 @@
+# Secretos: este sitio no necesita ninguno, y si alguno aparece no debe llegar al repo.
+.env
+.env*
+
+# Carpeta que arma el workflow para publicar; se genera en cada corrida.
+_site/
+
+# Archivos del sistema operativo y del editor
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/
+.idea/

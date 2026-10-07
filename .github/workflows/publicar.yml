@@ -1,0 +1,130 @@
+# Revisa y publica el sitio de Bujia Tech en GitHub Pages.
+#
+# El sitio es estático: no hay build. Lo único que se "arma" es la carpeta _site/ con una
+# lista explícita de archivos, para que CLAUDE.md, README.md, docs/ y .github/ nunca
+# lleguen a Pages aunque vivan en el repo.
+#
+# - revisar: corre en cada PR, en cada push a main y antes de cada publicación manual.
+#   Falla por lo que rompe la página (archivos o rutas que no existen, contacto del taller);
+#   solo avisa por los marcadores, porque se quiere poder publicar antes de tener los datos.
+# - publicar: solo en push a main o a mano, y solo si revisar pasó.
+name: Revisar y publicar
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue de Pages a medias es peor que esperar: nunca se cancela uno que ya empezó.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  # Lo único que se publica. Si agregas un archivo al sitio, agrégalo aquí o no saldrá.
+  PUBLICAR: >-
+    index.html aviso-de-privacidad.html base.css CNAME robots.txt sitemap.xml
+    favicon.svg favicon-32.png apple-touch-icon.png img
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Revisar que estén los archivos que el sitio necesita
+        run: |
+          falta=0
+          for f in index.html aviso-de-privacidad.html base.css CNAME robots.txt sitemap.xml \
+                   favicon.svg favicon-32.png apple-touch-icon.png img/og.jpg; do
+            if [ ! -f "$f" ]; then echo "::error file=$f::Falta $f"; falta=1; fi
+          done
+          exit $falta
+
+      - name: Armar _site con la lista explícita de archivos
+        run: |
+          rm -rf _site && mkdir _site
+          cp -R $PUBLICAR _site/
+          echo "Se publica:" && (cd _site && find . -type f | sort)
+          du -sh _site
+
+      # Revisa sobre _site y no sobre el repo: así también falla si una página enlaza
+      # un archivo que existe en el repo pero que no está en la lista de PUBLICAR.
+      - name: Revisar rutas locales en src, srcset y href
+        run: |
+          mal=0
+          cd _site
+          for pagina in *.html; do
+            # Sin los comentarios: los huecos PENDIENTE describen imágenes que todavía no existen.
+            valores=$(perl -0pe 's/<!--.*?-->//gs' "$pagina" | grep -oE '(src|srcset|href)="[^"]*"' | sed -E 's/^[a-z]+="(.*)"$/\1/' | tr ',' '\n' | awk '{print $1}')
+            for v in $valores; do
+              case "$v" in
+                http://*|https://*|mailto:*|tel:*|data:*|\#*|'') continue ;;
+                /*) echo "::error file=$pagina::Ruta con / inicial (debe ser relativa): $v"; mal=1; continue ;;
+              esac
+              ruta="${v%%#*}"; ruta="${ruta%%\?*}"
+              [ -z "$ruta" ] && continue
+              case "$ruta" in */|.) ruta="${ruta%/}/index.html" ;; esac
+              ruta="${ruta#./}"
+              if [ ! -e "$ruta" ]; then echo "::error file=$pagina::$pagina referencia $v y no existe en lo publicado"; mal=1; fi
+            done
+          done
+          exit $mal
+
+      - name: Revisar que no haya JavaScript y que el sitemap sea XML válido
+        run: |
+          if grep -nil '<script' _site/*.html; then echo "::error::Hay <script> en una página: el sitio va sin JavaScript"; exit 1; fi
+          python3 -c "import xml.dom.minidom; xml.dom.minidom.parse('_site/sitemap.xml')"
+
+      # El contacto es de Bujia Tech. El WhatsApp y el correo del taller no pueden aparecer
+      # en lo publicado, ni siquiera "mientras tanto".
+      - name: Revisar que no esté el contacto del taller
+        run: |
+          if grep -rnE '5618622447|bujiopsapp@|gmail\.com' _site; then
+            echo "::error::Apareció el WhatsApp o el correo del taller en los archivos publicados"
+            exit 1
+          fi
+
+      # Solo avisa: se quiere poder publicar antes de tener dominio y datos legales.
+      - name: Avisar por los marcadores que siguen sin reemplazar
+        run: |
+          for m in '{{DOMINIO}}' '{{WHATSAPP}}' '{{TELEFONO_VISIBLE}}' '{{CORREO}}' '{{CORREO_PRIVACIDAD}}' \
+                   '{{RESPONSABLE}}' '{{DOMICILIO}}' '{{FECHA_AVISO}}' '[PENDIENTE'; do
+            archivos=$(grep -rlF --exclude='*.png' --exclude='*.jpg' --exclude='*.webp' "$m" _site | sed 's|^_site/||' | tr '\n' ' ')
+            if [ -n "$archivos" ]; then echo "::warning::Sigue el marcador $m en: $archivos"; fi
+          done
+
+  publicar:
+    needs: revisar
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.desplegar.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar _site con la lista explícita de archivos
+        run: |
+          mkdir _site
+          cp -R $PUBLICAR _site/
+
+      # Pages se prende a mano la primera vez (Settings → Pages → Source: GitHub Actions).
+      # Con `enablement: true` falla con "Resource not accessible by integration", y un
+      # "Get Pages site failed" casi siempre significa que Pages sigue apagado.
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: desplegar
+        uses: actions/deploy-pages@v4
