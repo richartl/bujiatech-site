@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- {{DOMINIO}} es un marcador: se reemplaza en bloque con el comando del README. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://{{DOMINIO}}/</loc>
+  </url>
+  <url>
+    <loc>https://{{DOMINIO}}/aviso-de-privacidad.html</loc>
+  </url>
+</urlset>
