@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bujia Tech — Software a la medida, nube y consultoría</title>
+<meta name="description" content="Desarrollamos software a la medida, soluciones en la nube e híbridas, y consultoría técnica. Somos los creadores de BujiOps, el CRM para talleres.">
+<!--
+  {{DOMINIO}} es un marcador: el dominio todavía no existe. Estas URL van absolutas
+  porque buscadores, WhatsApp y redes no resuelven rutas relativas en metadatos.
+  Se reemplaza en bloque con el comando del README.
+-->
+<link rel="canonical" href="https://{{DOMINIO}}/">
+<meta name="theme-color" content="#020617">
+
+<!-- Tarjeta para compartir. La imagen es JPEG porque WhatsApp no lee WebP de forma confiable. -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="Bujia Tech">
+<meta property="og:title" content="Software que aguanta el día a día de tu negocio">
+<meta property="og:description" content="Software a la medida, en la nube y conectado a tu local. Lo probamos primero en casa: BujiOps opera en producción en un taller real.">
+<meta property="og:url" content="https://{{DOMINIO}}/">
+<meta property="og:image" content="https://{{DOMINIO}}/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bujia Tech: software a la medida, nube y consultoría">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Software que aguanta el día a día de tu negocio">
+<meta name="twitter:description" content="Software a la medida, en la nube y conectado a tu local. Lo probamos primero en casa: BujiOps opera en producción en un taller real.">
+<meta name="twitter:image" content="https://{{DOMINIO}}/img/og.jpg">
+
+<!-- Favicons provisionales mientras no haya logo. Rutas relativas: funcionan en github.io/bujiatech-site/ y en el dominio. -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+<!-- Primer elemento enfocable: quien navega con teclado se salta el encabezado. -->
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <div class="envoltura">
+    <a class="marca" href="./">Bujia Tech</a>
+    <nav aria-label="Principal">
+      <ul class="osc-enlaces">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#bujiops">BujiOps</a></li>
+        <li><a href="#como-trabajamos">Cómo trabajamos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <!--
+      CTA principal: WhatsApp propio de Bujia Tech (nunca el del taller). Un enlace wa.me
+      con el mensaje ya escrito es el camino más corto en un sitio sin backend.
+    -->
+    <a class="btn" href="https://wa.me/{{WHATSAPP}}?text=Hola%2C%20vengo%20del%20sitio%20de%20Bujia%20Tech%20y%20quiero%20platicar%20de%20un%20proyecto.">Cuéntanos tu proyecto</a>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <section class="hero osc" id="inicio" aria-labelledby="titulo">
+    <div class="envoltura">
+      <p class="rotulo">Software · Nube · Consultoría</p>
+      <h1 id="titulo">Software que aguanta el día a día de tu negocio</h1>
+      <p class="dice">En Bujia Tech desarrollamos sistemas a la medida, los publicamos en la nube y los conectamos con el equipo que ya tienes en tu local. Sabemos hacerlo porque lo hacemos: nuestro propio sistema, BujiOps, opera en producción en un taller real.</p>
+      <div class="botones">
+        <a class="btn" href="https://wa.me/{{WHATSAPP}}?text=Hola%2C%20vengo%20del%20sitio%20de%20Bujia%20Tech%20y%20quiero%20platicar%20de%20un%20proyecto.">Cuéntanos tu proyecto</a>
+        <!-- Misma pestaña a propósito (sin target="_blank"), como pide el documento de contenido. -->
+        <a class="btn2" href="https://bujiops.app/">Ver BujiOps</a>
+      </div>
+      <p class="tenue">Platicamos sin compromiso y te decimos con claridad si podemos ayudarte.</p>
+    </div>
+  </section>
+
+  <section class="banda claro" id="quienes-somos" aria-labelledby="t-quienes">
+    <div class="envoltura">
+      <h2 id="t-quienes">Ingeniería que nació en un taller</h2>
+      <div class="texto">
+        <p>Bujia Tech es la empresa de software de Ricardo Pérez, ingeniero en sistemas. Ricardo también dirige Bujia Project Music, un taller de reparación y fabricación de guitarras y bajos en Texcoco, Estado de México.</p>
+        <p>En lugar de acomodar el taller a un sistema genérico, construimos el sistema a la medida del taller: desde que entra un instrumento hasta que el cliente lo recoge y paga. Ese sistema es BujiOps, y hoy cualquier taller de reparación lo puede usar.</p>
+        <p>Así trabajamos con cada cliente: primero entendemos cómo opera tu negocio y después escribimos código.</p>
+      </div>
+      <!--
+        PENDIENTE: foto de Ricardo o del lugar de trabajo, con su texto alternativo.
+        Cuando llegue: <img src="img/quienes-somos.webp" alt="…" width="…" height="…" loading="lazy">
+        en WebP, debajo de los párrafos. No se pone tamaño de equipo ni años de experiencia
+        hasta que Ricardo lo dé.
+      -->
+    </div>
+  </section>
+
+  <section class="banda osc" id="servicios" aria-labelledby="t-servicios">
+    <div class="envoltura">
+      <h2 id="t-servicios">Qué hacemos</h2>
+      <p class="dice">Cuatro formas de ayudarte, y se pueden combinar. Muchas veces un proyecto empieza como consultoría y termina en un sistema publicado.</p>
+      <div class="rejilla">
+        <article class="tarjeta">
+          <h3>Desarrollo de software a la medida</h3>
+          <p>Sistemas web hechos para la forma en que ya trabajas, no al revés: control de órdenes, inventarios, cobranza, paneles para tu equipo y páginas para tus clientes.</p>
+          <ul class="lista">
+            <li>Aplicaciones web que funcionan en computadora y en celular</li>
+            <li>Sistemas internos con usuarios, roles y sucursales</li>
+            <li>Páginas públicas para tus clientes: seguimiento, cotizaciones, registros</li>
+            <li>Recibos y etiquetas imprimibles, y mensajes de WhatsApp ya redactados</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Nube</h3>
+          <p>Publicamos tu sistema en servidores en la nube, con dominio propio, HTTPS y despliegues automáticos, para que cada mejora llegue a producción sin pasos a mano.</p>
+          <ul class="lista">
+            <li>Contenedores Docker en servidores en la nube</li>
+            <li>Despliegue continuo con GitHub Actions</li>
+            <li>Almacenamiento de fotos y archivos en la nube</li>
+            <li>Dominio, certificados y configuración del servidor</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Soluciones híbridas</h3>
+          <p>No todo vive en internet. Conectamos tu sistema en la nube con lo que está físicamente en tu local: impresoras, lectores y equipos que tienen que responder ahí mismo.</p>
+          <ul class="lista">
+            <li>Agentes locales que reciben órdenes desde la nube y las ejecutan en tu equipo</li>
+            <li>Impresión de etiquetas y recibos desde el sistema</li>
+            <li>Integración con el hardware que ya tienes</li>
+            <li>Ejemplo real: en BujiOps, un agente escrito en Rust imprime etiquetas con QR en una Brother QL-800 del taller</li>
+          </ul>
+        </article>
+        <article class="tarjeta">
+          <h3>Consultoría</h3>
+          <p>Te ayudamos a decidir antes de invertir: qué conviene construir, qué conviene comprar y cómo ordenar lo que ya tienes.</p>
+          <ul class="lista">
+            <li>Diagnóstico de procesos y de los sistemas que ya usas</li>
+            <li>Arquitectura y elección de tecnología</li>
+            <li>Revisión técnica de proyectos existentes</li>
+            <li>Plan por etapas, empezando por lo que más te urge</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="banda blanco" id="bujiops" aria-labelledby="t-bujiops">
+    <div class="envoltura">
+      <p class="rotulo">Producto propio</p>
+      <h2 id="t-bujiops">BujiOps: lo construimos, lo publicamos y lo operamos</h2>
+      <p class="dice">BujiOps nació para administrar Bujia Project Music y hoy es un CRM para cualquier taller de reparación: motos, bicicletas, celulares, instrumentos y más. Es la mejor muestra de lo que podemos construir para ti, porque lo usamos en un taller real.</p>
+      <div class="dos">
+        <ul class="lista">
+          <li>Recepción del equipo en 4 pasos y tablero Kanban por equipo</li>
+          <li>Visitas con servicios, refacciones y notas</li>
+          <li>Recibos imprimibles y etiquetas con QR</li>
+          <li>Directorio de clientes con mensajes de seguimiento por WhatsApp ya redactados</li>
+          <li>Página pública donde el cliente ve el avance, sus pagos y su saldo, y califica el servicio</li>
+          <li>Página pública de prerregistro y cotización</li>
+          <li>Pagos con comprobante y finanzas: caja, gastos fijos y variables, cobranza, mejores clientes y recordatorios</li>
+          <li>Usuarios, roles, sucursales y desempeño por técnico</li>
+        </ul>
+        <div>
+          <h3>Lo que hay detrás</h3>
+          <ul class="lista">
+            <li>Interfaz en React, Vite y Tailwind; API en NestJS con Prisma y PostgreSQL</li>
+            <li>Contenedores Docker en DigitalOcean con Caddy, y despliegue continuo con GitHub Actions</li>
+            <li>Fotos y archivos en Google Cloud Storage</li>
+            <li>Agente de impresión en Rust conectado a una Brother QL-800</li>
+          </ul>
+        </div>
+      </div>
+      <!--
+        PENDIENTE: captura de BujiOps. Reutilizar una de las capturas reales del tablero que usa
+        bujiops.app (datos ficticios, nunca de un taller real), en WebP dentro de un marco de ventana:
+        <img src="img/bujiops-tablero.webp" alt="Tablero de BujiOps con las órdenes de un taller organizadas por estado" width="…" height="…" loading="lazy">
+      -->
+      <!-- Sin tabla de precios para que no se desactualice: la fuente es bujiops.app. -->
+      <p class="tenue">Planes desde una prueba de $0 hasta el plan Pro. Precios vigentes en bujiops.app.</p>
+      <div class="botones">
+        <a class="btn" href="https://bujiops.app/">Conocer BujiOps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="banda osc" id="como-trabajamos" aria-labelledby="t-como">
+    <div class="envoltura">
+      <h2 id="t-como">Cómo trabajamos</h2>
+      <ol class="pasos">
+        <li><strong>Platicamos.</strong> Nos cuentas qué necesitas y cómo trabajas hoy. Hacemos preguntas hasta entender el problema real.</li>
+        <li><strong>Te proponemos.</strong> Recibes por escrito el alcance, las etapas, los tiempos y el costo. Sin letras chiquitas.</li>
+        <li><strong>Construimos por entregas.</strong> Trabajamos en etapas cortas y ves avances funcionando desde el principio, no hasta el final.</li>
+        <li><strong>Publicamos y acompañamos.</strong> Dejamos el sistema en línea, te enseñamos a usarlo y seguimos disponibles para ajustes y mejoras.</li>
+      </ol>
+      <!-- PENDIENTE: decidir si la primera plática es sin costo y si hay soporte posterior incluido; si sí, agregarlo a los pasos 1 y 4. -->
+    </div>
+  </section>
+
+  <section class="banda claro" id="contacto" aria-labelledby="t-contacto">
+    <div class="envoltura">
+      <h2 id="t-contacto">¿Tienes un proyecto en mente?</h2>
+      <p class="dice">Cuéntanos qué quieres resolver. Si podemos ayudarte, te decimos cómo; si no, también te lo decimos.</p>
+      <div class="botones">
+        <a class="btn" href="https://wa.me/{{WHATSAPP}}?text=Hola%2C%20vengo%20del%20sitio%20de%20Bujia%20Tech%20y%20quiero%20platicar%20de%20un%20proyecto.">Cuéntanos tu proyecto</a>
+        <a class="btn2" href="mailto:{{CORREO}}?subject=Proyecto%20desde%20el%20sitio">Escríbenos un correo</a>
+      </div>
+      <ul class="datos">
+        <li>WhatsApp: <a href="https://wa.me/{{WHATSAPP}}?text=Hola%2C%20vengo%20del%20sitio%20de%20Bujia%20Tech%20y%20quiero%20platicar%20de%20un%20proyecto.">{{TELEFONO_VISIBLE}}</a></li>
+        <li>Correo: <a href="mailto:{{CORREO}}?subject=Proyecto%20desde%20el%20sitio">{{CORREO}}</a></li>
+      </ul>
+      <!-- PENDIENTE: tiempo de respuesta que se pueda cumplir. Si no se decide, esta línea no se publica. -->
+      <p class="tenue">Cuando nos escribes, usamos tus datos solo para responderte y darle seguimiento a tu proyecto. Consulta nuestro <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <p><strong>Bujia Tech</strong> · Software a la medida, nube y consultoría</p>
+    <nav aria-label="Pie de página">
+      <ul>
+        <li><a href="aviso-de-privacidad.html">Aviso de privacidad</a></li>
+        <li><a href="https://bujiops.app/">BujiOps</a></li>
+        <li><a href="mailto:{{CORREO}}">Correo</a></li>
+        <li><a href="https://wa.me/{{WHATSAPP}}?text=Hola%2C%20vengo%20del%20sitio%20de%20Bujia%20Tech%20y%20quiero%20platicar%20de%20un%20proyecto.">WhatsApp</a></li>
+      </ul>
+    </nav>
+    <p>© 2026 Bujia Tech. Hecho en México.</p>
+    <!-- PENDIENTE: enlaces a LinkedIn y GitHub de la empresa; no se agregan hasta tener las URL reales. -->
+  </div>
+</footer>
+</body>
+</html>
